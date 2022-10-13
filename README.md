@@ -6,7 +6,7 @@ There are three different design ideas and each could be used on their own or re
 
 ## Table
 
-The `Table` object is designed around the idea of building pipelines of data operations which are preformed sequentially. This is an alternative to the method chaining style of most existing dataframe libraries like pandas. The advantage is that it is easy to pull apart and reuse pipelines. Favoring functions instead of methods also allows others to add additional functionality that gets first class treatment. Finally, it plays nicer with formatters like `black` which often reformat method chains in less nice ways. Any[1] functions that could be used within a pandas `pandas.DataFrame.pipe` method, can be used as a step within the `Table`.
+The `Table` object is designed around the idea of building pipelines of data operations which are preformed sequentially. This is an alternative to the method chaining style of most existing dataframe libraries like pandas. The advantage is that it is easy to pull apart and reuse pipelines. Favoring functions instead of methods also allows others to add additional functionality that gets first class treatment. Finally, it plays nicer with formatters like `black` which often reformat method chains in less nice ways. Any[^1] functions that could be used within a pandas `pandas.DataFrame.pipe` method, can be used as a step within the `Table`.
 
 ```python
 # opossom
@@ -23,7 +23,10 @@ big_flipper_species = [
     op.slice()
 ]
 
-penguins[big_flipper_species]
+penguins[
+    op.filter(col.str("island") == "Torgersen"),
+    big_flipper_species,
+]
 
 # pandas equivalent
 (
@@ -34,7 +37,7 @@ penguins[big_flipper_species]
 )
 ```
 
-[1]: Must return a dataframe or an object that can be coerced into a dataframe
+[^1]: Must return a dataframe or an object that can be coerced into a dataframe
 
 ## Verbs
 
