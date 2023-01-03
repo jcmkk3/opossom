@@ -1,6 +1,6 @@
-# opossom
+# opossum
 
-opossom is an experimental API for data analysis. It is built on top of the very capable pandas library and is focused on API design ideas. It is very much a proof-of-concept and is not meant for use beyond general curiosity.
+opossum is an experimental API for data analysis. It is built on top of the very capable pandas library and is focused on API design ideas. It is very much a proof-of-concept and is not meant for use beyond general curiosity.
 
 There are three different design ideas and each could be used on their own or replaced with a compatible design.
 
@@ -9,7 +9,7 @@ There are three different design ideas and each could be used on their own or re
 The `Table` object is designed around the idea of building pipelines of data operations which are preformed sequentially. This is an alternative to the method chaining style of most existing dataframe libraries like pandas. The advantage is that it is easy to pull apart and reuse pipelines. Favoring functions instead of methods also allows others to add additional functionality that gets first class treatment. Finally, it plays nicer with formatters like `black` which often reformat method chains in less nice ways. Any[^1] functions that could be used within a pandas `pandas.DataFrame.pipe` method, can be used as a step within the `Table`.
 
 ```python
-# opossom
+# opossum
 penguins[
     op.filter(col.num("flipper_length_mm") > 200),
     op.count("species"),
@@ -60,7 +60,7 @@ Note that it is possible to use the verbs above with a pandas dataframe itself.
 Lastly, there are the column expression 'helpers'. These are compatible with any method in pandas that could accept a `lambda` function which takes a dataframe and returns a series or scalar. Many newer dataframe libraries like `polars` and `ibis` have an expression system. These allow a more natural expression of operations at the column level. In this case, I chose to make it required to specify the type (`col.num`/`col.str`) in order to get maximum help from autocompletion.
 
 ```python
-# opossom
+# opossum
 penguins[
     op.mutate({"upper_species": col.str("species").upper()})
 ]
@@ -83,4 +83,4 @@ penguins.assign(upper_species=lambda df: df["species"].str.upper())
 
 ## License
 
-`opossom` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+`opossum` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.

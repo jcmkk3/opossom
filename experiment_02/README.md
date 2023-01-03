@@ -4,8 +4,8 @@ Entry Points
 There are two primary entry points: `table` and `column`
 These are typically aliased as `tbl` and `col`.
 ```python
->>> import opossom.table as tbl
->>> import opossom.column as col
+>>> import opossum.table as tbl
+>>> import opossum.column as col
 ```
 
 Table construction always happens with the `tbl.Table` object.
@@ -263,7 +263,7 @@ Easily refactor.
 - If you want it to be parameterized, then create a function. It should be just a normal function that returns a `tbl` or `col` derived object
 
 Plays well with modern python style (i.e. black)
-TODO: opossom vs method chaining style
+TODO: opossum vs method chaining style
 TODO: how it is easier to reformat from a single line to multiple
 TODO: how it is possble to force multiline for ease of reading
 
@@ -292,8 +292,8 @@ Make it easy to discover actions that can be performed.
 
 Should have simple imports.
 ```python
->>> import opossom.table as tbl
->>> import opossom.column as col
+>>> import opossum.table as tbl
+>>> import opossum.column as col
 ```
 This goes along with the discovery note above.
 This is especially important for a library that will often be used interactively.
